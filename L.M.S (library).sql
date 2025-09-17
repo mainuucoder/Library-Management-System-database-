@@ -5,8 +5,6 @@ COLLATE utf8mb4_unicode_ci;
 
 USE library_management_db;
 
-
-
 -- Members table
 CREATE TABLE members (
     member_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -170,8 +168,6 @@ INSERT INTO loans (member_id, book_id, loan_date, due_date, return_date, renewal
 (4, 2, '2024-06-03', '2024-06-17', NULL, 0, 0.00, 'active'),
 (2, 6, '2024-05-25', '2024-06-08', NULL, 0, 0.00, 'active');
 
-
-
 -- Reservations table
 CREATE TABLE reservations (
     reservation_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -224,10 +220,6 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (member_id) REFERENCES members(member_id) ON DELETE CASCADE
 );
-
-
-
-
 -- Book copies inventory (for multiple copies of same book)
 CREATE TABLE book_copies (
     copy_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -242,13 +234,6 @@ CREATE TABLE book_copies (
     FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE,
     INDEX idx_barcode (barcode)
 );
-
-
-
-
-
-
-
 -- Update available copies based on current loans
 -- using temporary table
 CREATE TEMPORARY TABLE temp_book_updates AS
